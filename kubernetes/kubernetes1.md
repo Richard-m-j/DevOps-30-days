@@ -1,13 +1,13 @@
 # Kubernetes Core Objects: Detailed Notes
 
-### ## What is Kubernetes?
+## What is Kubernetes?
 
 **Kubernetes** (often abbreviated as **K8s**) is an orchestration system for managing containerized applications across a cluster of machines. While a tool like Docker is used to run containers on a single machine, Kubernetes automates the deployment, scaling, and management of these containers, ensuring they run reliably and recover from failures automatically.
 
 Kubernetes uses **objects** as blueprints to define the desired state of an application. The four most fundamental objects are the Pod, ReplicaSet, Deployment, and Service.
 
 ---
-### ## 1. Pod
+## 1. Pod
 
 A **Pod** is the smallest and most basic deployable unit in Kubernetes. It acts as a wrapper around one or more tightly coupled containers.
 
@@ -20,7 +20,7 @@ A **Pod** is the smallest and most basic deployable unit in Kubernetes. It acts 
     * Because pods are not restarted on failure and cannot be easily updated without downtime, they are rarely used directly. Instead, they are managed by higher-level objects like Deployments.
 
 ---
-### ## 2. ReplicaSet
+## 2. ReplicaSet
 
 A **ReplicaSet** is a controller whose primary job is to ensure that a specified number of identical pod "replicas" are running at all times.
 
@@ -33,7 +33,7 @@ A **ReplicaSet** is a controller whose primary job is to ensure that a specified
     * The main drawback of a ReplicaSet is that it does not support **rolling updates**. To update an application, you must delete the old ReplicaSet and create a new one, which results in downtime.
 
 ---
-### ## 3. Deployment
+## 3. Deployment
 
 A **Deployment** is a higher-level object that manages ReplicaSets and is the most common and recommended way to run applications on Kubernetes. It provides sophisticated features for updating applications without downtime.
 
@@ -44,7 +44,7 @@ A **Deployment** is a higher-level object that manages ReplicaSets and is the mo
     * **Health Checks**: Deployments can be configured with **Liveness Probes** (to restart unhealthy pods) and **Readiness Probes** (to ensure traffic is only sent to pods that are ready to receive it).
 
 ---
-### ## 4. Service
+## 4. Service
 
 A **Service** provides a stable network endpoint to access a group of pods. It solves the problem that pods have temporary, unreliable IP addresses that can change when they are recreated.
 
