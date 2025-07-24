@@ -6,11 +6,11 @@ A practical guide to essential `kubectl` commands for managing applications, con
 
 ## Managing Workloads (Deployments, Pods, etc.)
 
-### ### Applying & Creating Resources
+### Applying & Creating Resources
 * **`kubectl apply -f <filename.yaml>`**: Creates or updates resources from a YAML manifest file.
 * **`kubectl run <pod-name> --image=<image-name>`**: Creates and runs a single pod quickly (useful for testing).
 
-### ### Getting Information
+### Getting Information
 * **`kubectl get pods`**: Lists all pods in the current namespace.
 * **`kubectl get deployments`**: Lists all deployments.
 * **`kubectl get services`**: Lists all services.
@@ -18,7 +18,7 @@ A practical guide to essential `kubectl` commands for managing applications, con
 * **`kubectl get pods -o wide`**: Lists pods with more detailed information, including the node they are on and their IP address.
 * **`kubectl get pods -n <namespace-name>`**: Lists pods in a specific namespace.
 
-### ### Describing & Deleting Resources
+### Describing & Deleting Resources
 * **`kubectl describe pod <pod-name>`**: Shows detailed information about a pod, including its configuration, status, and recent events.
 * **`kubectl describe deployment <deployment-name>`**: Shows detailed information about a deployment.
 * **`kubectl delete pod <pod-name>`**: Deletes a specific pod.
@@ -28,12 +28,12 @@ A practical guide to essential `kubectl` commands for managing applications, con
 
 ## Managing Updates & Rollouts
 
-### ### Updating & Scaling
+### Updating & Scaling
 * **`kubectl scale deployment <deployment-name> --replicas=<count>`**: Scales the number of pods in a deployment.
 * **`kubectl set image deployment/<dep-name> <container-name>=<new-image>`**: Updates the container image of a deployment, which triggers a rolling update.
 * **`kubectl edit deployment <deployment-name>`**: Opens the deployment's manifest in a text editor for manual changes.
 
-### ### Managing Rollouts
+### Managing Rollouts
 * **`kubectl rollout status deployment/<deployment-name>`**: Checks the live status of a rolling update.
 * **`kubectl rollout history deployment/<deployment-name>`**: Views the revision history of a deployment's rollouts.
 * **`kubectl rollout undo deployment/<deployment-name>`**: Rolls back a deployment to its previous version.
@@ -68,13 +68,13 @@ A practical guide to essential `kubectl` commands for managing applications, con
 
 ## Managing Storage & Networking
 
-### ### Storage
+### Storage
 * **`kubectl get pv`**: Lists all PersistentVolumes.
 * **`kubectl get pvc`**: Lists all PersistentVolumeClaims.
 * **`kubectl describe pvc <pvc-name>`**: Shows detailed information about a PersistentVolumeClaim and its status.
 * **`kubectl get storageclass`**: Lists the available StorageClasses for dynamic volume provisioning.
 
-### ### Networking
+### Networking
 * **`kubectl get services`**: Lists all services in the cluster.
 * **`kubectl describe service <service-name>`**: Shows detailed information about a service, including its IP and ports.
 * **`kubectl get endpoints <service-name>`**: Shows the internal IP addresses and ports of the pods that a service is currently routing traffic to.

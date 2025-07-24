@@ -8,7 +8,7 @@ A reference sheet for core Kubernetes concepts and their essential `kubectl` com
 
 Kubernetes uses objects as blueprints to define the desired state of your application.
 
-### ### 1. Pod
+### 1. Pod
 
 A **Pod** is the smallest and simplest unit in Kubernetes, acting as a wrapper for one or more containers. Containers within a pod share the same network and storage resources. Pods are considered temporary; if a pod fails, it is not automatically restarted.
 
@@ -20,7 +20,7 @@ A **Pod** is the smallest and simplest unit in Kubernetes, acting as a wrapper f
 
 ---
 
-### ### 2. ReplicaSet
+### 2. ReplicaSet
 
 A **ReplicaSet** is a controller that ensures a specified number of identical pods (replicas) are running at all times. If a pod fails, the ReplicaSet automatically creates a new one to maintain the desired count.
 
@@ -30,7 +30,7 @@ A **ReplicaSet** is a controller that ensures a specified number of identical po
 
 ---
 
-### ### 3. Deployment
+### 3. Deployment
 
 A **Deployment** is a higher-level object that manages ReplicaSets and is the standard way to run applications on Kubernetes. It provides sophisticated features for updates and rollbacks. Its key feature is enabling **rolling updates** with zero downtime.
 
@@ -44,7 +44,7 @@ A **Deployment** is a higher-level object that manages ReplicaSets and is the st
 
 ---
 
-### ### 4. Service
+### 4. Service
 
 A **Service** provides a single, stable network endpoint (IP address and DNS name) to access a group of pods. It solves the problem of pods having temporary, changing IP addresses and also load-balances traffic among them.
 
@@ -57,7 +57,7 @@ A **Service** provides a single, stable network endpoint (IP address and DNS nam
 
 ## Configuration & Storage
 
-### ### ConfigMaps & Secrets
+### ConfigMaps & Secrets
 
 * **ConfigMaps** are used to store non-sensitive configuration data as key-value pairs, decoupling configuration from your application code.
 * **Secrets** are used for sensitive information like passwords and API keys. The data is stored in a base64 encoded format.
@@ -68,7 +68,7 @@ A **Service** provides a single, stable network endpoint (IP address and DNS nam
 
 ---
 
-### ### Volumes
+### Volumes
 
 **Volumes** provide a way to manage storage for containers, ensuring that data persists beyond the lifecycle of a single pod. The standard way to manage persistent storage is by using `PersistentVolumes` (PVs) and `PersistentVolumeClaims` (PVCs).
 
