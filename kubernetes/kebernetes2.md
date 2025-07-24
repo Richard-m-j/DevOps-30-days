@@ -1,73 +1,80 @@
-# Kubernetes: ConfigMaps, Secrets, Volumes, & Rolling Updates
+# Kubernetes Command Reference
 
-A guide to managing configuration, sensitive data, storage, and application updates in Kubernetes.
-
----
-
-## ConfigMaps
-
-ConfigMaps are Kubernetes objects used to store non-sensitive configuration data as key-value pairs. They are essential for decoupling configuration from container images, which makes applications more portable.
-
-### Creating ConfigMaps
-
-You can create ConfigMaps in several ways:
-* **From literal values**: Using the `kubectl create configmap --from-literal` command to define key-value pairs directly.
-* **From files**: Using `kubectl create configmap --from-file` to create a ConfigMap from the contents of a single file or a directory of files.
-* **From a YAML manifest**: Defining the key-value data directly in a YAML file under the `data` field.
-
-### Using ConfigMaps in Pods
-
-ConfigMaps can be consumed by Pods in two primary ways:
-* **As Environment Variables**: You can inject key-value pairs from a ConfigMap directly into a container as environment variables.
-* **As Volume Mounts**: You can mount a ConfigMap as a volume, where each key in the ConfigMap becomes a file in the specified mount path.
+A practical guide to essential `kubectl` commands for managing applications, configuration, storage, and troubleshooting.
 
 ---
 
-## Secrets
+## Managing Workloads (Deployments, Pods, etc.)
 
-Secrets are similar to ConfigMaps but are specifically designed to hold sensitive information like passwords, API tokens, or TLS certificates. The data is stored in a base64 encoded format.
+### ### Applying & Creating Resources
+* **`kubectl apply -f <filename.yaml>`**: Creates or updates resources from a YAML manifest file.
+* **`kubectl run <pod-name> --image=<image-name>`**: Creates and runs a single pod quickly (useful for testing).
 
-### Creating Secrets
+### ### Getting Information
+* **`kubectl get pods`**: Lists all pods in the current namespace.
+* **`kubectl get deployments`**: Lists all deployments.
+* **`kubectl get services`**: Lists all services.
+* **`kubectl get all`**: Lists all major resources (pods, services, deployments, etc.) in the current namespace.
+* **`kubectl get pods -o wide`**: Lists pods with more detailed information, including the node they are on and their IP address.
+* **`kubectl get pods -n <namespace-name>`**: Lists pods in a specific namespace.
 
-* **Imperatively**: Using `kubectl create secret` for different types, such as `generic`, `docker-registry` (for private container images), or `tls`.
-* **Declaratively**: Using a YAML manifest. You can provide base64 encoded values in the `data` field or plain text values in the `stringData` field, which Kubernetes will automatically encode.
-
-### Using Secrets in Pods
-
-Like ConfigMaps, Secrets can be exposed to containers:
-* **As Environment Variables**: Injecting secret data as environment variables for the application to use.
-* **As Volume Mounts**: Mounting a secret as a read-only volume, where each key becomes a file inside the container.
-* **As Image Pull Secrets**: Using `imagePullSecrets` in a Pod specification to allow it to pull container images from a private registry.
-
----
-
-## Volumes
-
-Kubernetes Volumes provide a way to manage storage for containers, ensuring that data can persist beyond the lifecycle of a single pod.
-
-### Common Volume Types
-
-* **`emptyDir`**: A temporary volume that is created when a Pod is assigned to a node and exists as long as that Pod is running. It is useful for sharing data between containers within the same Pod.
-* **`hostPath`**: Mounts a file or directory from the host node’s filesystem into a Pod. This should be used with caution as it can create security risks.
-* **`persistentVolume` (PV) and `persistentVolumeClaim` (PVC)**: This is the standard model for managing durable storage.
-    * A **PersistentVolume (PV)** is a piece of storage in the cluster that has been provisioned by an administrator.
-    * A **PersistentVolumeClaim (PVC)** is a request for storage by a user, which is then bound to a suitable PV. Pods consume persistent storage by referencing the PVC.
+### ### Describing & Deleting Resources
+* **`kubectl describe pod <pod-name>`**: Shows detailed information about a pod, including its configuration, status, and recent events.
+* **`kubectl describe deployment <deployment-name>`**: Shows detailed information about a deployment.
+* **`kubectl delete pod <pod-name>`**: Deletes a specific pod.
+* **`kubectl delete -f <filename.yaml>`**: Deletes all resources defined in a specific YAML file.
 
 ---
 
-## Rolling Updates
+## Managing Updates & Rollouts
 
-Rolling updates are the default strategy used by Kubernetes Deployments to update applications with zero downtime. This is achieved by incrementally replacing old pods with new ones.
+### ### Updating & Scaling
+* **`kubectl scale deployment <deployment-name> --replicas=<count>`**: Scales the number of pods in a deployment.
+* **`kubectl set image deployment/<dep-name> <container-name>=<new-image>`**: Updates the container image of a deployment, which triggers a rolling update.
+* **`kubectl edit deployment <deployment-name>`**: Opens the deployment's manifest in a text editor for manual changes.
 
-### Configuring Rolling Updates
+### ### Managing Rollouts
+* **`kubectl rollout status deployment/<deployment-name>`**: Checks the live status of a rolling update.
+* **`kubectl rollout history deployment/<deployment-name>`**: Views the revision history of a deployment's rollouts.
+* **`kubectl rollout undo deployment/<deployment-name>`**: Rolls back a deployment to its previous version.
+* **`kubectl rollout undo deployment/<deployment-name> --to-revision=<number>`**: Rolls back a deployment to a specific revision number.
+* **`kubectl rollout restart deployment/<deployment-name>`**: Performs a rolling restart of all pods in a deployment, which is useful for forcing a configuration reload.
+* **`kubectl rollout pause deployment/<deployment-name>`**: Pauses an ongoing rollout.
+* **`kubectl rollout resume deployment/<deployment-name>`**: Resumes a paused rollout.
 
-The update strategy can be fine-tuned in the Deployment manifest:
-* `strategy.rollingUpdate.maxUnavailable`: The maximum number of pods that can be unavailable during an update.
-* `strategy.rollingUpdate.maxSurge`: The maximum number of new pods that can be created above the desired replica count during an update.
+---
 
-### Performing and Managing Rollouts
+## Debugging & Interaction
 
-* **Triggering an Update**: A rollout is typically triggered by changing the container image version in the Deployment template using `kubectl set image`.
-* **Monitoring a Rollout**: You can check the progress of an update using `kubectl rollout status deployment/<deployment-name>`.
-* **Managing History and Rollbacks**: Kubernetes keeps a history of deployment revisions. You can view this with `kubectl rollout history` and revert to a previous version using `kubectl rollout undo`.
-* **Health Checks**: `readinessProbe` and `livenessProbe` are critical for safe rolling updates. They ensure that traffic is only sent to new pods when they are ready to handle it and that failing pods are restarted.
+* **`kubectl logs <pod-name>`**: Displays the logs from the primary container in a pod.
+* **`kubectl logs -f <pod-name>`**: Streams the logs from a pod in real-time (follow).
+* **`kubectl logs <pod-name> -c <container-name>`**: Displays logs from a specific container within a multi-container pod.
+* **`kubectl exec -it <pod-name> -- /bin/bash`**: Opens an interactive shell session inside a running pod.
+* **`kubectl get events --sort-by=.metadata.creationTimestamp`**: Shows a log of recent cluster events, sorted by time.
+* **`kubectl port-forward <pod-or-service-name> <local-port>:<remote-port>`**: Forwards a local port to a port on a pod or service for direct access.
+
+---
+
+## Managing Configuration & Secrets
+
+* **`kubectl get configmaps`**: Lists all ConfigMaps.
+* **`kubectl create configmap <name> --from-literal=<key>=<value>`**: Creates a ConfigMap from key-value pairs specified on the command line.
+* **`kubectl create configmap <name> --from-file=<path/to/file>`**: Creates a ConfigMap from one or more files.
+* **`kubectl get secrets`**: Lists all Secrets.
+* **`kubectl create secret generic <name> --from-literal=<key>=<value>`**: Creates a generic secret from key-value pairs.
+* **`kubectl create secret docker-registry <name> --docker-server=...`**: Creates a secret for authenticating with a private Docker registry.
+
+---
+
+## Managing Storage & Networking
+
+### ### Storage
+* **`kubectl get pv`**: Lists all PersistentVolumes.
+* **`kubectl get pvc`**: Lists all PersistentVolumeClaims.
+* **`kubectl describe pvc <pvc-name>`**: Shows detailed information about a PersistentVolumeClaim and its status.
+* **`kubectl get storageclass`**: Lists the available StorageClasses for dynamic volume provisioning.
+
+### ### Networking
+* **`kubectl get services`**: Lists all services in the cluster.
+* **`kubectl describe service <service-name>`**: Shows detailed information about a service, including its IP and ports.
+* **`kubectl get endpoints <service-name>`**: Shows the internal IP addresses and ports of the pods that a service is currently routing traffic to.
