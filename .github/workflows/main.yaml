@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./demo
-          file: ./demo/Dockerfile
+          file: ./demo/dockerfile
           push: true
           tags: ghcr.io/richard-m-j/demo-app:latest
 
