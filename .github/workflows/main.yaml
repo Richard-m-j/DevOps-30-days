@@ -44,5 +44,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          sed -i 's|ghcr.io/richard-m-j/simple-k8s-app:latest|ghcr.io/richard-m-j/simple-k8s-app:latest|' k8s-manifest.yaml
+          sed -i 's|ghcr.io/richard-m-j/devops-30-days:latest|ghcr.io/richard-m-j/devops-30-days:latest|' k8s-manifest.yaml
           kubectl apply -f k8s-manifest.yaml
