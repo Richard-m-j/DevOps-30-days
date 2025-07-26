@@ -24,7 +24,7 @@ jobs:
         with:
           context: ./demo 
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/devops-30-days:latest
+          tags: ghcr.io/richard-m-j/devops-30-days:latest
 
   deploy:
     runs-on: ubuntu-latest
