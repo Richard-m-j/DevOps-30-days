@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: web-server
-        image: ghcr.io/YOUR_GITHUB_USERNAME/demo-app:latest # This will be replaced by the pipeline
+        image: ghcr.io/YOUR_GITHUB_USERNAME/demo-app:latest
         ports:
-        - containerPort: 8080
-          envFrom: # Load all keys from the ConfigMap as environment variables [cite: 88, 210]
+        - containerPort: 3000 
+        envFrom:
           - configMapRef:
               name: demo-config
 ---
@@ -31,5 +31,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 3000 
   type: NodePort
