@@ -3,7 +3,7 @@ FROM python:3.11-slim AS builder
 WORKDIR /app
 COPY requirements.txt .
 # Install dependencies into a specific directory
-RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt [cite: 251]
+RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt
 
 # Stage 2: The final "runtime" stage [cite: 249]
 FROM python:3.11-slim
