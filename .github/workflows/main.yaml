@@ -26,7 +26,7 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/simple-k8s-app:latest
+          tags: ghcr.io/richard-m-j/simple-k8s-app:latest
 
   deploy:
     name: Deploy to Kubernetes
@@ -44,5 +44,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          sed -i 's|ghcr.io/richard-m-j/simple-k8s-app:latest|ghcr.io/${{ github.repository_owner }}/simple-k8s-app:latest|' k8s-manifest.yaml
+          sed -i 's|ghcr.io/richard-m-j/simple-k8s-app:latest|ghcr.io/richard-m-j/simple-k8s-app:latest|' k8s-manifest.yaml
           kubectl apply -f k8s-manifest.yaml
