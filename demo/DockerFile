@@ -1,0 +1,22 @@
+# Stage 1: The "builder" stage to install dependencies [cite: 248]
+FROM python:3.11-slim AS builder
+WORKDIR /app
+COPY requirements.txt .
+# Install dependencies into a specific directory
+RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt [cite: 251]
+
+# Stage 2: The final "runtime" stage [cite: 249]
+FROM python:3.11-slim
+WORKDIR /app
+# Create a non-root user for better security [cite: 253]
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Copy dependencies from the builder stage
+COPY --from=builder /app/deps /usr/local/lib/python3.11/site-packages
+COPY . .
+
+USER appuser
+# Expose the port the app uses [cite: 241]
+EXPOSE 8080
+# Define the command to run when the container starts [cite: 242]
+CMD ["python", "app.py"]
