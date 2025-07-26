@@ -22,7 +22,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./demo 
+          context: ./demo
+          file: ./demo/Dockerfile  # Add this line to specify the path
           push: true
           tags: ghcr.io/richard-m-j/devops-30-days:latest
 
