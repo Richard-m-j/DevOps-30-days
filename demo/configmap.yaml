@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: demo-config
-data:
-  # Simple key-value pairs for configuration [cite: 87]
-  APP_TITLE: "K8s Demo v1"
-  BACKGROUND_COLOR: "#5D3FD3"
