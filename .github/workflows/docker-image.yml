@@ -15,5 +15,5 @@ jobs:
       run: docker build ./simple-app/ --tag simple-app:latest
     - name: push image to docker hub
       run: |
-        docker login -u richardjoseph1 -p {{ secrets.DOCKER_HUB_TOKEN }}
+        docker login -u richardjoseph1 -p ${{ secrets.DOCKER_HUB_TOKEN }}
         docker push richardjoseph1/simple-app:latest
