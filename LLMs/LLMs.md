@@ -1,10 +1,5 @@
 # LLM Model Development and Preparation
 
-This phase focuses on acquiring or building the LLM that will power your application.
-
-- compare costs and benchmarks
-https://medium.com/@social_65128/choosing-the-best-llm-model-a-strategic-guide-for-your-organizations-needs-f64794ead5e9
-
 ## What is a Large Language Model (LLM)?
 
 An LLM is a type of artificial intelligence model specifically designed to understand, interpret, and generate human language.
