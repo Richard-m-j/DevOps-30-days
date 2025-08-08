@@ -13,7 +13,6 @@ An LLM is a type of artificial intelligence model specifically designed to under
 * LLMs contain billions of parameters, which allow them to learn from vast datasets and achieve remarkable accuracy.
 * Prominent examples include **Google's PaLM-2**, **OpenAI's GPT series**, and **Meta's Llama 2**.
 ---
-<img width="517" height="731" alt="image" src="https://github.com/user-attachments/assets/b5fe66e2-831e-4abf-bcff-a911bad0ddfb" />
 
 ## How Do LLMs Work? The Transformer Architecture
 
@@ -28,6 +27,7 @@ LLMs are powered by the **transformer neural network**, a technology introduced 
 * **Self-Attention Mechanism**: This is the critical feature of transformers. It allows the model to weigh the importance of different words in a sentence, focusing on specific parts of the input to generate a more accurate and nuanced output. This bidirectional approach is a major leap from previous models.
 
 ---
+<img width="517" height="731" alt="image" src="https://github.com/user-attachments/assets/b5fe66e2-831e-4abf-bcff-a911bad0ddfb" />
 
 ## The LLM Training Process
 
