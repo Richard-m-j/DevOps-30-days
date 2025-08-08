@@ -72,6 +72,9 @@ Evaluating Large Language Models (LLMs) is essential for building reliable appli
 
 
 ---
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/889473e9-44c9-40fe-bdff-3b39e714d560" />
+
+
 ### **Core Evaluation Metrics**
 
 Evaluation techniques have evolved significantly. They can be broken down into two main types:
