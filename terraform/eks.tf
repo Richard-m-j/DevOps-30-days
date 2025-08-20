@@ -1,14 +1,9 @@
 # eks.tf
 
-# 1. Configure the AWS Provider
-# Specifies the AWS region where resources will be created.
 provider "aws" {
-  region = "ap-southeast-1" # You can change this to your preferred region
+  region = "ap-southeast-1" 
 }
 
-# 2. Create a VPC for our EKS Cluster
-# EKS requires a VPC with at least two subnets in different Availability Zones.
-# Using the official Terraform AWS VPC module simplifies this process.
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
@@ -29,8 +24,6 @@ module "vpc" {
   }
 }
 
-# 3. Create IAM Role for the EKS Cluster
-# This role is assumed by the EKS control plane to manage AWS resources.
 resource "aws_iam_role" "eks_cluster_role" {
   name = "richard-eks-cluster-role"
 
@@ -48,14 +41,11 @@ resource "aws_iam_role" "eks_cluster_role" {
   })
 }
 
-# Attach the required AmazonEKSClusterPolicy to the role.
 resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks_cluster_role.name
 }
 
-# 4. Create IAM Role for the Worker Nodes
-# This role is assumed by the EC2 instances in the node group.
 resource "aws_iam_role" "eks_nodes_role" {
   name = "richard-eks-node-group-role"
 
@@ -73,7 +63,6 @@ resource "aws_iam_role" "eks_nodes_role" {
   })
 }
 
-# Attach the three required policies for worker nodes.
 resource "aws_iam_role_policy_attachment" "eks_worker_node_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.eks_nodes_role.name
@@ -89,8 +78,6 @@ resource "aws_iam_role_policy_attachment" "ec2_container_registry_read_only" {
   role       = aws_iam_role.eks_nodes_role.name
 }
 
-# 5. Create the EKS Cluster
-# This defines the main EKS control plane.
 resource "aws_eks_cluster" "my_cluster" {
   name     = "richard-eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
@@ -99,14 +86,11 @@ resource "aws_eks_cluster" "my_cluster" {
     subnet_ids = module.vpc.private_subnets
   }
 
-  # Ensure the IAM role is created with its policies before the cluster is created.
   depends_on = [
     aws_iam_role_policy_attachment.eks_cluster_policy
   ]
 }
 
-# 6. Create the EKS Node Group
-# This creates the EC2 instances that will register with the EKS cluster.
 resource "aws_eks_node_group" "richard_node_group" {
   cluster_name    = aws_eks_cluster.my_cluster.name
   node_group_name = "richard-node-group"
@@ -121,7 +105,6 @@ resource "aws_eks_node_group" "richard_node_group" {
     min_size     = 1
   }
 
-  # Ensure the cluster is created before the node group.
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node_policy,
     aws_iam_role_policy_attachment.eks_cni_policy,

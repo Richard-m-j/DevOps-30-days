@@ -1,0 +1,57 @@
+# Docker
+- What are docker images?
+    - They are 
+- BIOS -> MBR -> Bootloader for OS -> Kernel -> initialization process -> Application
+- Corrupted on VM does not affect the physical machine
+- Hyper visor helps to create a VMs
+- 
+
+- docker uses linux capabilities, all processes run on the host machine
+- image layers are stored in overlay2 folder
+- container run time performance can be affected if we have many layers
+- reduce number of layers by combining layers and also multistage building
+- images are alyered file systems
+- Cow(copy on write) improves performance by initially loafing the containers fast
+- copy vs add - add has the ability to download from url also
+- add is vulnerable to attack, to download use run wget or curl ( This can help in reducing layers as it can be combined with other run command)
+
+
+# Namespaces
+
+- why so VMs appear different
+    - Network space
+    - User space
+    - file space
+    - Process space
+    - Hostname space
+    - IPC and RPC
+
+- C groups - control groups
+    - The kernel can find all the running processes
+    - Docker leverages this by using to kill processes when required
+
+# Docker Volumes
+
+- Docker containers are ephimeral
+    - need to be stateless
+    - Primary, Secondary and Tertiary architecture for SQL databases
+    - The leader election and splitting architecture for NoSQL
+
+- Volumes are like a mounted folder from the host machine
+    - the mounted folder can then be accessed by containers. 
+- docker volume types
+    - tempfs
+        - syntax --mount type=tempfs 
+        - to keep the writable layer small
+    - bind mount Volumes
+        - starts with / or path after -v
+    - Volumes
+        - Anonymous Volumes
+        - Named Volumes
+        - Volumes always gets created inside the root docker folder, there is a folder called volumes there
+        - syntax: -v volumeName (don't give /, if there is not a volume in theat name, it will be created)
+            - -v volumename 1<where in host> 2<where in container> 3<mode>
+            - only mandatory param is the second param
+                - When only 1 param is given -> anonymous volume 
+
+- process isolation is pseudo isolation

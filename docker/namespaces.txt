@@ -1,0 +1,14 @@
+# Namespaces
+
+- why so VMs appear different
+    - Network space
+    - User space
+    - file space
+    - Process space
+    - Hostname space
+    - IPC and RPC
+
+- C groups - control groups
+    - The kernel can find all the running processes
+    - Docker leverages this by using to kill processes when required
+
