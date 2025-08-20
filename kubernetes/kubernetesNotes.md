@@ -1,4 +1,14 @@
 # Kubernetes
+- why
+    - Rollout and rollback
+    - autmatic failover
+    - easy deployment
+    - self healing
+    - storage orchestration
+    - optimum hardware utilization
+    - Batch execution
+    - improved security through RBAC and Network Policies
+    - Ingress helps with path based routing
 - master and worker nodes
     - master 
         - kube-scheduler
@@ -51,4 +61,6 @@
 - There is a controller when there is an entry in the ETCD for the replicas, the replica a controller will then create entries in the ETCD for individual pods, this entry will then trigger the scheduler.
 
 - loadbalancer is there between workers and master when there is more than 1 master nodes
-- 
+
+
+- DaemonSet - it will be created and run in all node

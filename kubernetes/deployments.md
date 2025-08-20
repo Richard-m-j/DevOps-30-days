@@ -1,0 +1,11 @@
+# Deployment
+- Deployment controller is watching the ETCD, when there is not enough pod, it will create entry in ETCD in the replicaset 
+- Replicaset controller will then create entry in ETCD for the pods to be created 
+- When Update is done:
+    - The deployment controller adds the entry for n/2 pods with the new version
+    - The replicaset controller then adds the pods with the new pods entry in the ETCD
+    - This triggers, the creation of new pods
+    - after these starts running, the old pods entry is reduced and this triggers the deletion through the same process
+    - eventually all the pods are replaced in this manner
+    - the deployment controller watches the replication table also
+    - the replication controller watches the pods table also
