@@ -9,3 +9,8 @@
     - eventually all the pods are replaced in this manner
     - the deployment controller watches the replication table also
     - the replication controller watches the pods table also
+
+## Deployment has 2 strategies
+- Rolling update
+- Recreate 
+    - this will delete and recreate the pods
