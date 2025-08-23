@@ -2,8 +2,6 @@
 
 ## Introduction to Service Mesh and Istio
 
-- This document explains what a service mesh is and how Istio implements it. The approach covers: first discussing challenges in a microservices application, then showing how a service mesh solves these, and finally illustrating how Istio provides those solutions.
-
 - Istio itself is introduced as an open-source service mesh for microservice architectures. It "helps manage communication, security, and observability" between microservices. In other words, Istio provides a layer that handles networking and policy for services so developers can focus on business logic rather than plumbing.
 
 ## Challenges in Microservices Architectures
