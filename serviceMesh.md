@@ -85,7 +85,13 @@
 - Installing Istio typically involves using `istioctl` (Istio's CLI) or a Helm chart. For example, running `istioctl install --set profile=demo` spins up the control plane. Once installed, you typically label namespaces (e.g. `istio-injection=enabled`) so new pods automatically get an Envoy sidecar. The Istio control plane pods (istiod, istio-ingressgateway, etc) run in Kubernetes.
 
 ### Configuration via Kubernetes
-- As mentioned, Istio uses CRDs for all configuration. You never edit Envoy's config files directly; instead you create or modify Kubernetes CRs like Gateway, VirtualService, DestinationRule, PeerAuthentication, etc. For example, to enable mTLS mesh-wide, you might create a PeerAuthentication CR setting `mtls: STRICT`. This declarative style means you use `kubectl` on these Istio-specific resource types.
+- As mentioned, Istio uses CRDs for all configuration.
+  - You never edit Envoy's config files directly; instead you create or modify Kubernetes CRs like :
+    - Gateway,
+    - VirtualService,
+    - DestinationRule,
+    - PeerAuthentication, etc.
+- For example, to enable mTLS mesh-wide, you might create a PeerAuthentication CR setting `mtls: STRICT`. This declarative style means you use `kubectl` on these Istio-specific resource types.
 
 ### Ingress and Gateways
 - Istio also provides a way to handle inbound traffic from outside the cluster. An Istio Gateway resource and IngressGateway proxy allow you to expose services (like a web frontend) with managed TLS certificates and routing rules. The Istio ingress gateway is itself an Envoy proxy that you configure similarly to services.
