@@ -54,7 +54,7 @@ Istio gives you fine-grained control over traffic flow.
 
 ---
 
-## Feature 2: Zero-Trust Security 🛡
+## Feature 2: Zero-Trust Security 
 
 Istio provides a secure foundation for your microservices without requiring any code changes.
 
