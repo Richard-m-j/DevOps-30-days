@@ -15,7 +15,7 @@ Why do we need a service mesh? Because microservices introduce complex challenge
 ---
 
 ## The Solution: What is a Service Mesh? 
-[text](serviceMesh.md)
+![alt text](serviceMesh.md)
 A **service mesh** is a dedicated infrastructure layer that makes service-to-service communication safe, fast, and reliable.
 
 * **Core Idea:** It inserts a lightweight network proxy, called a **sidecar**, next to each service instance.
