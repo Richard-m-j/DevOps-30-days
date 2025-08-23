@@ -5,7 +5,7 @@
 ## The Problem: Microservice Chaos 
 
 Why do we need a service mesh? Because microservices introduce complex challenges:
-https://github.com/Richard-m-j/DevOps-30-days/blob/main/challengesOfMicroservices.png
+![alt text](challengesOfMicroservices.png)
 * **Service Discovery:** How does `Service A` find `Service B` when pods are constantly changing?
 * **Secure Communication:** How do you encrypt traffic and manage thousands of TLS certificates? 🛡️
 * **Reliability:** What happens when a service fails? How do you prevent a single failure from taking down the entire system?
@@ -15,7 +15,7 @@ https://github.com/Richard-m-j/DevOps-30-days/blob/main/challengesOfMicroservice
 ---
 
 ## The Solution: What is a Service Mesh? 
-https://github.com/Richard-m-j/DevOps-30-days/blob/main/serviceMesh.png
+[text](serviceMesh.md)
 A **service mesh** is a dedicated infrastructure layer that makes service-to-service communication safe, fast, and reliable.
 
 * **Core Idea:** It inserts a lightweight network proxy, called a **sidecar**, next to each service instance.
@@ -30,7 +30,7 @@ A **service mesh** is a dedicated infrastructure layer that makes service-to-ser
 ---
 
 ## Istio: The Leading Service Mesh
-https://github.com/Richard-m-j/DevOps-30-days/blob/main/istio%20architecture.png
+![alt text](<istio architecture.png>)
 **Istio** is an open-source, production-ready service mesh that transparently layers onto existing distributed applications.
 
 * **Data Plane:** Uses **Envoy**, a high-performance proxy developed at Lyft.
