@@ -7,10 +7,10 @@
 Why do we need a service mesh? Because microservices introduce complex challenges:
 ![alt text](challengesOfMicroservices.png)
 * **Service Discovery:** How does `Service A` find `Service B` when pods are constantly changing?
-* **Secure Communication:** How do you encrypt traffic and manage thousands of TLS certificates? 🛡️
+* **Secure Communication:** How do you encrypt traffic and manage thousands of TLS certificates? 
 * **Reliability:** What happens when a service fails? How do you prevent a single failure from taking down the entire system?
 * **Traffic Management:** How do you safely roll out a new version without impacting all users? (e.g., Canary Releases).
-* **Observability:** How can you understand what's happening across hundreds of services? It's a "black box." 📈
+* **Observability:** How can you understand what's happening across hundreds of services? It's a "black box."
 
 ---
 
