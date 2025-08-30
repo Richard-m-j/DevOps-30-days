@@ -16,8 +16,8 @@
 
 - **Leverage layer caching**: place instructions that change less frequently (like installing dependencies) before instructions that change more frequently (like copying source code) to make the most of Docker's build cache.
 
-- **Remove unnecessary cache**: After installing packages, clean up cache files from package managers (like `apt-get clean`, `rm -rf /var/lib/apt/lists/*`, or `npm cache clean --force`) within the same `RUN` layer to reduce image size.
+- **Remove unnecessary cache**: After installing packages, clean up cache files from package managers within the same `RUN` layer to reduce image size.
 
-- **Use `npm ci` for Node.js project**: Prefer `npm ci` over `npm install`. It provides faster, more reliable, and secure builds by using the `package-lock.json` file to install the exact same dependency versions every time, preventing unexpected changes.
+- **Use `npm ci` for Node.js project**: Prefer `npm ci` over `npm install`. It provides faster and more reliable builds by using the `package-lock.json` file to install the same dependency versions every time.
 
-- **Add labels for metadata**: Use the `LABEL` instruction to add metadata to your image, such as the maintainer, version, or a link to the source repository. This helps with image management and organization.
+- **Add labels for metadata**: Use the `LABEL` instruction to add metadata to your image, such as version, or a link to the source repository. This helps with image management and organization.
