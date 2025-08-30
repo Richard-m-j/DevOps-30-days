@@ -1,4 +1,4 @@
-# Dockerfile Best Practices
+# Dockerfile Best Practices Implemented
 
 - **Use multi-stage builds**: This allows you to use one stage with all the build-time dependencies to compile your application, and a final, separate stage with only the necessary runtime dependencies, resulting in a much smaller and more secure final image.
 
