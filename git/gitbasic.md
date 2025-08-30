@@ -53,3 +53,4 @@ Remote repositories are versions of your project stored on the internet, like on
 * **`.gitignore`**: This is a special file where you can list files or directories that you want Git to ignore and not track.
 * **`git diff`**: Shows the changes between your working directory and the staging area.
 * **`git stash`**: Temporarily saves changes that you have not committed, so you can switch branches and work on something else.
+
