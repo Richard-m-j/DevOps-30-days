@@ -14,7 +14,7 @@ Mistral AI distinguishes itself in the competitive AI landscape through a combin
 ---
 
 ### 2. Key Architectural Innovations
-
+![alt text](mistral-architecture.png)
 Mistral's efficiency and performance are rooted in sophisticated architectural choices that optimize computation and context handling.
 
 * **Sliding Window Attention (SWA):**
