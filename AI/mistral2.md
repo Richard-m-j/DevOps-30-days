@@ -14,7 +14,7 @@ Mistral AI's strategy is built on two core principles that differentiate it in t
 ---
 
 ### 2. Key Architectural Innovations
-
+![alt text](mistral-architecture.png)
 Mistral's efficiency stems from several advanced architectural choices.
 
 * **Grouped-Query Attention (GQA):** An optimization where multiple query "heads" share a single Key/Value pair. **Benefit:** This significantly reduces the memory and computation required during inference, leading to much faster response times.
@@ -22,6 +22,7 @@ Mistral's efficiency stems from several advanced architectural choices.
 * **Sliding Window Attention (SWA):** Instead of every token attending to every other token in the context, each token only looks at a recent, fixed-size window (e.g., the last 4,096 tokens). **Benefit:** This allows for a much larger effective context length at a fraction of the computational cost of standard attention.
 
 * **Mixture of Experts (MoE):** This architecture uses multiple "expert" sub-networks and a router that directs each token to only the most relevant experts (e.g., 2 out of 8).
+![alt text](smoe-architecture.png)
     * **Analogy:** Imagine a large hospital. Instead of every patient seeing every single doctor, a triage nurse sends them to the two most relevant specialists.
     * **Benefit:** The model can contain a vast amount of knowledge (many experts) but uses only a fraction of its parameters for any given token, making inference incredibly fast and cost-effective relative to its total size.
 
