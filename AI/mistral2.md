@@ -1,4 +1,4 @@
-# An Overview of Mistral AI
+# Mistral AI
 
 This document provides a concise overview of Mistral AI, its technology, model offerings, and strategic advantages for businesses.
 
