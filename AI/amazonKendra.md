@@ -1,4 +1,4 @@
-# Amazon Kendra – Concise Notes
+# Amazon Kendra 
 
 ## Overview
 Amazon Kendra is an intelligent enterprise search service powered by machine learning.  
