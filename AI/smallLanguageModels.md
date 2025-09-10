@@ -1,4 +1,4 @@
-# Small Language Models (SLMs) – Presentation Notes
+# Small Language Models (SLMs) 
 
 ## Introduction
 - **Definition**: Compact versions of large language models (LLMs) built for **resource-limited environments** (smartphones, embedded systems, low-power devices).
