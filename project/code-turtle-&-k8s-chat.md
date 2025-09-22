@@ -35,7 +35,7 @@ This action provides automated, AI-driven code reviews on pull requests.
 
 ---
 
-## 3. Natural Language Kubernetes (k8s) Interface 🗣️
+## 3. Natural Language Kubernetes (k8s) Interface 
 
 This project, built using **LangGraph**, allows users to interact with a Kubernetes cluster using natural language queries.
 
